@@ -1,29 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Todo, fetchTodos } from '../actions/index';
+import { StoreState } from '../reducers';
 
 interface AppProps {
-  color?: string
+  todos: Todo[];
+  fetchTodos(): any;   // this will be specified later
 }
 
 class App extends React.Component<AppProps> {
-  state = { counter: 0 }
   
-  onIncrement = () => {
-    this.setState({ counter: this.state.counter +1 })
-  }
-
-  onDecrement = () => {
-    this.setState({ counter: this.state.counter -1 })
-  }
-
   render() {
   return (
     <div className="App">
-      <button onClick={this.onIncrement} >increment</button>
-      <button onClick={this.onDecrement} >decrement</button>
-      {this.state.counter}
+      
     </div>
   );
   }
-}
+};
 
-export default App;
+const mapStateToProps = ({ todos }: StoreState): { todos: Todo[]} => {
+  return { todos };
+};
+
+export default connect(mapStateToProps, { fetchTodos })(App);

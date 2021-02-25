@@ -15,7 +15,7 @@ const store = createStore(reducers, initialState, composeWithDevTools(applyMiddl
 
 ReactDOM.render(
   <Provider store={store}>
-    <App color="red"/>
+    <App />
   </Provider>,
   document.getElementById('root')
 );
