@@ -9,11 +9,25 @@ interface AppProps {
 }
 
 class App extends React.Component<AppProps> {
+  onButtonClick = (): void => {     // dont expect this function to return any arguments. thats why : void
+    this.props.fetchTodos();
+  };
   
+  renderList(): JSX.Element[] {     // returning array of JSX elements.
+    return this.props.todos.map((todo) => {
+      return (
+      <div key={todo.id}>
+        {todo.title}
+      </div>
+      )
+    })
+  }
+
   render() {
   return (
     <div className="App">
-      
+      <button onClick={this.onButtonClick} >Fetch Todos</button>
+      {this.renderList()}
     </div>
   );
   }
